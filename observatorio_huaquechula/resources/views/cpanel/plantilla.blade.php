@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huaquechula</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <script type="module" src="{{ asset('assets/js/app.js') }}" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+
+</head>
+
+<body id="home">
+    <nav class="navbar custom-navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+                <a class="navbar-brand" href="#">
+                <img src="{{ asset('assets/image/huaquechulaLogo.png') }}" alt="Logo" style="height: 70px; width: auto;">
+            </a>
+
+
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú offcanvas (solo móvil) -->
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="mobileMenu"
+                aria-labelledby="mobileMenuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="mobileMenuLabel">Menú</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#Inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#modelado">Modelado</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#repositorio">Repositorio</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Menú horizontal (solo escritorio) -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav d-flex justify-content-around w-75">
+                    <li class="nav-item"><a class="nav-link" href="#Inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#modelado">Modelado</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#repositorio">Repositorio</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">Observatorio Turistico de </h1>
+            <h1 class="title">Huaquechula</h1>
+        </div>
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path
+                    d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z" />
+            </svg>
+        </div>
+        <div class="mouse-icon">
+            <div class="wheel"></div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <!-- Indicadores destacados -->
+        <section id="indicadores" class="mb-5">
+            <h2 class="fw-bold text-center mb-4" style="color: var(--color-gris-oscuro);">Indicadores Clave</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="card border-0"
+                        style="background: linear-gradient(135deg, var(--color-naranja-claro), var(--color-naranja));">
+                        <div class="card-body text-white py-4">
+                            <i class="fas fa-users fa-2x mb-3"></i>
+                            <h5 class="card-title">Visitantes Anuales</h5>
+                            <p class="fs-3 mb-0">25,000+</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0"
+                        style="background: linear-gradient(135deg, var(--color-gris-oscuro), #6A6A6A);">
+                        <div class="card-body text-white py-4">
+                            <i class="fas fa-hotel fa-2x mb-3"></i>
+                            <h5 class="card-title">Hospedajes</h5>
+                            <p class="fs-3 mb-0">45+</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0"
+                        style="background: linear-gradient(135deg, var(--color-arena-oscuro), #E0D8B8);">
+                        <div class="card-body py-4">
+                            <i class="fas fa-utensils fa-2x mb-3" style="color: var(--color-gris-oscuro);"></i>
+                            <h5 class="card-title" style="color: var(--color-gris-oscuro);">Restaurantes</h5>
+                            <p class="fs-3 mb-0" style="color: var(--color-gris-oscuro);">30+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gráficas -->
+        <section id="graficos" class="mb-5">
+            <h2 class="fw-bold text-center mb-4" style="color: var(--color-gris-oscuro);">Estadísticas Turísticas</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-3">Visitantes por Mes</h5>
+                            <div class="canvas-container">
+                                <canvas id="chart1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-3">Tendencia Anual</h5>
+                            <div class="canvas-container">
+                                <canvas id="chart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Descargas -->
+        <section id="descargas">
+            <h2 class="fw-bold text-center mb-4" style="color: var(--color-gris-oscuro);">Recursos y Descargas</h2>
+            <div class="d-flex justify-content-center">
+                <div class="list-group w-75">
+                    <div class="list-group-item">
+                        <a href="#"><i class="fas fa-file-pdf me-2"></i> Reporte Anual de Turismo 2024 (PDF)</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a href="#"><i class="fas fa-chart-bar me-2"></i> Datos Estadísticos Completos (CSV)</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a href="#"><i class="fas fa-map-marked-alt me-2"></i> Guía Turística de Huaquechula (PDF)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="text-center p-4 text-white">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Observatorio Turístico de Huaquechula</p>
+            <p class="mb-0">Todos los derechos reservados | Gobierno de Resultados 2024-2027</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
