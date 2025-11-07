@@ -12,11 +12,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('cpanel.miVista');
+});
+Route::get('/mapa', function () {
+    return view('cpanel.mapa');
 });
 
-Route::get('/mi-vista', function () {
-    return view('cpanel.miVista');
+Route::get('/encuesta', function () {
+    return view('encuesta');
+});
+
+Route::get('/repositorio', function () {
+    return view('cpanel.repositorio');
 });

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositorio de Documentos - Observatorio Turístico</title>
+
+    <!-- CSS: Leaflet primero si lo usas, luego tu CSS combinado -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/repositorio_css.css') }}" />
+
+    <!-- Bootstrap y Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Scripts: librerías necesarias antes de tu java.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Tu script al final (usa defer) -->
+    <script src="{{ asset('js/java.js') }}"></script>
+</head>
+
+<body class="repo-page">
+
+@include('partials.navbar')
+
+    <div class="main-container">
+    <!-- Header -->
+    <div class="page-header mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <h2 class="mb-0"><i class="fas fa-folder me-2"></i>Repositorio de Documentos</h2>
+            <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                <i class="fas fa-upload me-2"></i>Subir Documento
+            </button>
+        </div>
+        <p class="text-muted mt-2">Organiza y gestiona todos tus documentos por categorías</p>
+    </div>
+
+         <div class="repository-layout">
+        <!-- Sidebar -->
+        <div class="sidebar-container">
+            <div class="repository-card">
+                <div class="card-header">
+                    <i class="fas fa-tags me-2"></i>Categorías
+                </div>
+                <div class="card-body">
+                    <div class="category-item active" data-category="all">
+                        <i class="fas fa-folder"></i>
+                        <span class="ms-2">Todos los documentos</span>
+                    </div>
+                    <div class="category-item" data-category="videos">
+                        <i class="fas fa-video"></i>
+                        <span class="ms-2">Galería de videos</span>
+                    </div>
+                    <div class="category-item" data-category="reportes">
+                        <i class="fas fa-chart-bar"></i>
+                        <span class="ms-2">Reportes</span>
+                    </div>
+                    <div class="category-item" data-category="historicos">
+                        <i class="fas fa-archive"></i>
+                        <span class="ms-2">Documentos históricos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <!-- Área principal de documentos -->
+             <div class="main-content">
+            <div class="repository-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span id="category-title"><i class="fas fa-file me-2"></i>Todos los documentos</span>
+                    <div class="d-flex">
+                        <input type="text" id="searchInput" class="form-control form-control-sm" 
+                               placeholder="Buscar documento..." style="width: 200px;">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="documents-container">
+                            <!-- Documentos de ejemplo -->
+                            <div class="document-card" data-category="reportes">
+                                <i class="document-icon fas fa-file-pdf"></i>
+                                <div class="document-info">
+                                    <div class="document-title">Reporte Mensual Turismo 2024</div>
+                                    <div class="document-meta">2.5 MB • 15/10/2024 • Análisis de datos turísticos del
+                                        mes</div>
+                                </div>
+                                <div class="document-actions">
+                                    <button class="btn-action btn-view" onclick="alert('Función de visualización')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action btn-download" onclick="alert('Función de descarga')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-action btn-delete" onclick="eliminarDocumento(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="document-card" data-category="videos">
+                                <i class="document-icon fas fa-file-video"></i>
+                                <div class="document-info">
+                                    <div class="document-title">Promocional Destino Turístico</div>
+                                    <div class="document-meta">45.8 MB • 12/10/2024 • Video promocional</div>
+                                </div>
+                                <div class="document-actions">
+                                    <button class="btn-action btn-view" onclick="alert('Función de visualización')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action btn-download" onclick="alert('Función de descarga')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-action btn-delete" onclick="eliminarDocumento(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="document-card" data-category="historicos">
+                                <i class="document-icon fas fa-file-word"></i>
+                                <div class="document-info">
+                                    <div class="document-title">Historia del Turismo Regional</div>
+                                    <div class="document-meta">1.2 MB • 08/10/2024 • Documento histórico</div>
+                                </div>
+                                <div class="document-actions">
+                                    <button class="btn-action btn-view" onclick="alert('Función de visualización')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action btn-download" onclick="alert('Función de descarga')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-action btn-delete" onclick="eliminarDocumento(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="document-card" data-category="reportes">
+                                <i class="document-icon fas fa-file-excel"></i>
+                                <div class="document-info">
+                                    <div class="document-title">Estadísticas Anuales 2023</div>
+                                    <div class="document-meta">3.8 MB • 05/10/2024 • Datos estadísticos</div>
+                                </div>
+                                <div class="document-actions">
+                                    <button class="btn-action btn-view" onclick="alert('Función de visualización')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action btn-download" onclick="alert('Función de descarga')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-action btn-delete" onclick="eliminarDocumento(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="document-card" data-category="videos">
+                                <i class="document-icon fas fa-file-video"></i>
+                                <div class="document-info">
+                                    <div class="document-title">Entrevista Sector Hotelero</div>
+                                    <div class="document-meta">28.3 MB • 01/10/2024 • Video entrevista</div>
+                                </div>
+                                <div class="document-actions">
+                                    <button class="btn-action btn-view" onclick="alert('Función de visualización')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action btn-download" onclick="alert('Función de descarga')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-action btn-delete" onclick="eliminarDocumento(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para subir documentos -->
+    <div class="modal fade" id="uploadModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title"><i class="fas fa-upload me-2"></i>Subir Documento</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadForm">
+                        <div class="upload-area" id="uploadDropZone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h5>Arrastra tus archivos aquí o haz clic para seleccionar</h5>
+                            <p class="text-muted">Formatos: PDF, DOC, XLS, PPT, JPG, PNG, MP4, AVI, MOV</p>
+                            <p class="text-muted">Tamaño máximo: 10 MB</p>
+                            <input type="file" id="fileInput" name="archivo" style="display: none;"
+                                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.mp4,.avi,.mov,.wmv">
+                            <button type="button" class="btn btn-primary-custom mt-2"
+                                onclick="document.getElementById('fileInput').click()">
+                                <i class="fas fa-folder-open me-2"></i>Seleccionar Archivo
+                            </button>
+                            <div id="fileInfo" class="mt-3" style="display: none;">
+                                <p><strong>Archivo:</strong> <span id="fileName"></span></p>
+                                <p><strong>Tamaño:</strong> <span id="fileSize"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label for="documentName" class="form-label">Nombre del documento *</label>
+                            <input type="text" class="form-control" id="documentName" name="titulo" required>
+                        </div>
+
+                        <div class="mt-2">
+                            <label for="documentCategory" class="form-label">Categoría *</label>
+                            <select class="form-select" id="documentCategory" name="categoria" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="videos">Galería de videos</option>
+                                <option value="reportes">Reportes</option>
+                                <option value="historicos">Documentos históricos</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-2">
+                            <label for="documentDescription" class="form-label">Descripción (opcional)</label>
+                            <textarea class="form-control" id="documentDescription" name="descripcion"
+                                rows="2"></textarea>
+                        </div>
+
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" id="makePublic" name="es_publico" checked>
+                            <label class="form-check-label" for="makePublic">
+                                Hacer público este documento
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary-custom" id="submitUpload">
+                        Subir Documento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para visualización -->
+    <div class="modal fade" id="viewerModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title" id="viewerModalLabel">Visualizador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="viewerContent">
+                    <!-- Contenido dinámico -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
