@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProveedoresController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,17 +13,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 Route::get('/', function () {
-    return view('cpanel.miVista');
-});
-Route::get('/mapa', function () {
-    return view('cpanel.mapa');
+    return view('cpanel.index');
 });
 
-Route::get('/encuesta', function () {
-    return view('encuesta');
-});
 
-Route::get('/repositorio', function () {
-    return view('cpanel.repositorio');
-});
+
+
+Route::get('/table', function () {
+    return view('cpanel.js-grid');
+})->name('tabla');
