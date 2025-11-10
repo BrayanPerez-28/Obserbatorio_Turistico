@@ -1,51 +1,62 @@
-<nav class="navbar custom-navbar navbar-expand-md fixed-top">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <!-- Logo -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('image/huaquechulaLogo.png') }}" alt="Logo" style="height: 70px; width: auto;">
-            </a>
-
-            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Menú offcanvas -->
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="mobileMenuLabel">Menú</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" href="{{ route('dashboard') }}">
+            <img src="{{ asset('images/logo.svg') }}" alt="logo" />
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
+            <img src="{{ asset('images/logo-mini.svg') }}" alt="logo" />
+        </a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+        </button>
+        <div class="search-field d-none d-xl-block">
+            <form class="d-flex align-items-center h-100" action="#">
+                <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                        <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                    </div>
+                    <input type="text" class="form-control bg-transparent border-0" placeholder="Search products">
                 </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/mapa') }}">Mapa</a></li>
-                        <ul class="submenu">
-                            <li><a class="nav-link submenu-item" href="{{ url('/login') }}">Iniciar sesión</a></li>
-                            <li><a class="nav-link submenu-item" href="{{ url('/encuesta') }}">Encuesta</a></li>
-                        </ul>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/repositorio') }}">Repositorio</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Menú horizontal -->
-            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav d-flex justify-content-around w-75">
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/mapa') }}">Mapa</a></li>
-                    <!-- Encuesta con submenú personalizado para escritorio -->
-                    <li class="nav-item has-submenu">
-                        <a class="nav-link submenu-toggle" href="#">
-                            Encuesta <span class="submenu-arrow">▼</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a class="nav-link submenu-item" href="{{ url('/encuesta') }}">Encuesta</a></li>
-                            <li><a class="nav-link submenu-item" href="{{ url('/login') }}">Iniciar sesión</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/repositorio') }}">Repositorio</a></li>
-                </ul>
-            </div>
+            </form>
         </div>
-    </nav>
+        <ul class="navbar-nav navbar-nav-right">
+            <!-- User Profile -->
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <div class="nav-profile-img">
+                        <img src="{{ asset('images/faces/face28.png') }}" alt="image">
+                    </div>
+                    <div class="nav-profile-text">
+                        <p class="mb-1 text-black">Henry Klein</p>
+                    </div>
+                </a>
+                <div class="dropdown-menu navbar-dropdown dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="profileDropdown">
+                    <div class="p-3 text-center bg-primary">
+                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('images/faces/face28.png') }}" alt="">
+                    </div>
+                    <div class="p-2">
+                        <h5 class="dropdown-header text-uppercase pl-2 text-dark">User Options</h5>
+                        <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                            <span>Profile</span>
+                            <i class="mdi mdi-account-outline ml-1"></i>
+                        </a>
+                        <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                            <span>Settings</span>
+                            <i class="mdi mdi-settings"></i>
+                        </a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                            <span>Log Out</span>
+                            <i class="mdi mdi-logout ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+        </button>
+    </div>
+</nav>
